@@ -13,6 +13,7 @@ class GoogleLocators(Enum):
 
 
 class GooglePage(BasePage):
+    URL = "https://www.google.com"
 
     def ask_google_about_text_and_wait_for_results(self, text: str):
         search_box_web = self.driver.find_element(By.NAME, "q")

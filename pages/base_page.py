@@ -10,6 +10,7 @@ class LocatorStorage():
 
 
 class BasePage(PageFactory):
+    URL = ""
 
     def __init__(self, driver):
         self.driver = driver
