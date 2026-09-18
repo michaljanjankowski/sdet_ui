@@ -34,5 +34,12 @@ jobs:
         run: uv sync --locked
       - name: Run pre-commit checks
         run: uv run --locked pre-commit run --all-files
-      - name: Collect Selenium tests
-        run: uv run --locked pytest --collect-only -q
+      - name: Run stable Selenium tests
+        run: uv run --locked pytest tests/test_theinternet_basic.py --headless -q
+      - name: Upload browser failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-failures-python-${{ matrix.python }}
+          path: test-results/
+          if-no-files-found: ignore

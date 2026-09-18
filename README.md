@@ -31,6 +31,14 @@ with an explicit reason; missing results or other errors still fail the test.
 Use `uv run --locked pytest -ra` to display skip reasons.
 Selenium Manager handles ChromeDriver; its first run may need to download the driver.
 
+Each test gets a fresh Chrome session. To run without a visible window, use:
+
+```bash
+uv run --locked pytest --headless
+```
+
+When a test fails, pytest writes a screenshot and the page HTML to `test-results/`.
+
 To check test collection without starting a browser:
 
 ```bash
@@ -66,6 +74,7 @@ The hooks check whitespace, YAML, TOML, merge conflicts, Ruff lint and formattin
 and whether `uv.lock` matches `pyproject.toml`. Tools use the versions in `uv.lock`.
 Some hooks fix files automatically; review and stage those changes before committing.
 
-GitHub Actions runs the same checks and collects tests on Python 3.10 and 3.12
-for pushes and pull requests. It also supports manual runs. CI does not execute
-browser tests; run those locally in a graphical session as described above.
+GitHub Actions runs the same checks and the stable The Internet browser tests in
+headless Chrome on Python 3.10 and 3.12. Failed runs upload screenshots and page
+HTML as a `selenium-failures-*` artifact. Google and YouTube tests remain local
+because those services can block automation or change independently of this project.

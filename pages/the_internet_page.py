@@ -23,9 +23,8 @@ class TheInternetPage(BasePage):
         result = self.wait.until(EC.visibility_of_element_located(self.DYNAMIC_LOADING_RESULT))
         return result.text
 
-    def get_all_featurs_and_store_to_dct(self):
+    def get_feature_links(self):
         links = self.wait.until(
             EC.visibility_of_all_elements_located((By.CSS_SELECTOR, "#content ul li a"))
         )
-        self.features_dct = {link.text: link for link in links}
-        return self.features_dct
+        return {link.text: link for link in links}
