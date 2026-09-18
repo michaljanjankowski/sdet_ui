@@ -1,10 +1,11 @@
-from seleniumpagefactory.Pagefactory import PageFactory
-from selenium.webdriver.common.by import By
 from dataclasses import dataclass
+
+from selenium.webdriver.common.by import By
+from seleniumpagefactory.Pagefactory import PageFactory
 
 
 @dataclass
-class LocatorStorage():
+class LocatorStorage:
     locator: By
     value: str
 
