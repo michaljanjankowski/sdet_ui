@@ -25,6 +25,10 @@ uv run --locked pytest
 ```
 
 The tests launch a visible browser, so they require a graphical session and internet access.
+Google and YouTube cookie consent is dismissed through the visible controls.
+If Google returns its CAPTCHA/unusual traffic page, the Google search test is skipped
+with an explicit reason; missing results or other errors still fail the test.
+Use `uv run --locked pytest -ra` to display skip reasons.
 Selenium Manager handles ChromeDriver; its first run may need to download the driver.
 
 To check test collection without starting a browser:

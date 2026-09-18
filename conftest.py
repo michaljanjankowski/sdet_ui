@@ -7,12 +7,10 @@ from selenium import webdriver
 @pytest.fixture(scope="session", autouse=True)
 def connection():
     chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_experimental_option(
-        "prefs", {"profile.default_content_setting_values.cookies": 2}
-    )
     chrome_options.add_argument("--remote-debugging-port=8000")
     driver = webdriver.Chrome(options=chrome_options)
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(0)
+    driver.set_page_load_timeout(45)
     driver.maximize_window()
     yield driver  # Here tests are executed, driver is delivered to test case
     driver.quit()
